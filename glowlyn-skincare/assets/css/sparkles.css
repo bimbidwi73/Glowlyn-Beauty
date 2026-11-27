@@ -1,0 +1,14 @@
+/* ==========================================================================
+   sparkles.css — Lapisan kilauan (sparkle) yang melayang di seluruh halaman
+   Kanvas dibuat oleh assets/js/modules/sparkles.js.
+   z-index 45: di atas konten, di bawah header (50), keranjang, dan modal.
+   ========================================================================== */
+
+.sparkle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 45;
+  pointer-events: none; /* tidak menghalangi klik ke tombol/produk */
+}

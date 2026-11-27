@@ -1,0 +1,182 @@
+/* ==========================================================================
+   product-detail.css — Halaman Detail Produk (#produk/<id>)
+   ========================================================================== */
+
+#pdp-root { padding-block: var(--space-2) var(--space-4); }
+#pdp-root .breadcrumb { margin-bottom: 1rem; }
+
+.pdp {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .pdp { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 3rem; }
+  .pdp__media { position: sticky; top: calc(var(--header-height) + 1rem); }
+}
+
+/* ---------- Gambar ---------- */
+.pdp__image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-lowest);
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 4 / 5;
+}
+.pdp__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pdp__image:hover img { transform: scale(1.06); }
+.pdp__image .product-card__badges { top: 0.9rem; left: 0.9rem; }
+
+.pdp__trust {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+.pdp__trust li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.4rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-low);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-on-surface-variant);
+}
+.pdp__trust .icon { color: var(--color-primary); }
+
+/* ---------- Info ---------- */
+.pdp__eyebrow {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+.pdp__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 0.6rem;
+}
+.pdp__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  margin-bottom: 0.9rem;
+}
+.pdp__rating .icon { color: var(--color-star); font-size: 1.1rem; }
+.pdp__rating span { color: var(--color-on-surface-variant); }
+.pdp__tagline {
+  margin-bottom: 1.1rem;
+  font-size: 1rem;
+  color: var(--color-on-surface-variant);
+}
+
+.pdp__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-low);
+}
+.pdp__price-now { font-size: 1.75rem; font-weight: 700; color: var(--color-primary); }
+.pdp__price-old { font-size: 0.9375rem; color: var(--color-outline); text-decoration: line-through; }
+.pdp__save {
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--color-tertiary-fixed);
+  color: var(--color-on-tertiary-fixed);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.pdp__benefits { display: grid; gap: 0.5rem; margin-bottom: 1.1rem; }
+.pdp__benefits li { display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9375rem; }
+.pdp__benefits .icon { color: var(--color-success); font-size: 1.15rem; margin-top: 0.1rem; }
+
+.pdp__meta { margin-bottom: 0.9rem; font-size: 0.8125rem; color: var(--color-on-surface-variant); }
+.pdp__meta span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.pdp__meta .icon { font-size: 1.1rem; color: var(--color-primary); }
+
+.pdp__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: 1.4rem; }
+.pdp__chips-label { font-size: 0.75rem; font-weight: 600; color: var(--color-on-surface-variant); margin-right: 0.25rem; }
+
+.pdp__actions { display: flex; gap: 0.6rem; margin-bottom: 0.6rem; }
+.pdp__cart { flex: 1; padding-block: 0.9rem; }
+.pdp__info .btn--block { padding-block: 0.8rem; }
+.pdp__ship {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-size: 0.8125rem;
+  color: var(--color-on-surface-variant);
+}
+.pdp__ship .icon { color: var(--color-primary); font-size: 1.15rem; }
+
+/* ---------- Akordeon rincian ---------- */
+.pdp__details { display: grid; gap: 0.75rem; max-width: 52rem; margin: var(--space-5) auto var(--space-4); }
+.pdp-acc {
+  border: 1px solid var(--color-outline-variant);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-lowest);
+  overflow: hidden;
+}
+.pdp-acc summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.pdp-acc summary::-webkit-details-marker { display: none; }
+.pdp-acc summary > span { flex: 1; }
+.pdp-acc summary .icon:first-child { color: var(--color-primary); }
+.pdp-acc summary .icon:last-child { transition: transform 0.25s ease; }
+.pdp-acc[open] summary .icon:last-child { transform: rotate(180deg); }
+.pdp-acc__body { padding: 0 1.15rem 1.15rem; font-size: 0.9375rem; line-height: 1.7; color: var(--color-on-surface-variant); }
+.pdp-acc__body p + .btn { margin-top: 0.8rem; }
+.pdp__list { padding-left: 1.2rem; display: grid; gap: 0.45rem; }
+ol.pdp__list { list-style: decimal; }
+ul.pdp__list { list-style: disc; }
+.pdp__sub { margin: 0.4rem 0 0.5rem; font-size: 0.8125rem; font-weight: 700; color: var(--color-on-surface); }
+.pdp__rows { display: grid; gap: 0.6rem; margin-bottom: 0.8rem; }
+.pdp__rows li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-low);
+}
+.pdp__rows strong { color: var(--color-primary); font-size: 0.875rem; }
+.pdp__rows span { font-size: 0.875rem; }
+
+.pdp__related { margin-top: var(--space-5); }
+.pdp__related .section__head { margin-bottom: 1.1rem; }
+
+/* ---------- Kartu produk bisa diklik ke halaman detail ---------- */
+.product-card__link { display: block; width: 100%; height: 100%; }
+.product-card__media img { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.product-card:hover .product-card__media img { transform: scale(1.05); }
+.product-card__name a { color: inherit; transition: color 0.2s; }
+.product-card__name a:hover { color: var(--color-primary); }

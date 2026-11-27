@@ -1,0 +1,83 @@
+/* ==========================================================================
+   mobile-menu.css — Tombol hamburger & panel navigasi untuk layar HP/tablet
+   Hanya aktif di layar ≤ 900px (saat .nav desktop disembunyikan).
+   ========================================================================== */
+
+.nav-toggle { display: none; }
+
+.mobile-menu,
+.mobile-menu__overlay { display: none; }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: inline-flex; flex-shrink: 0; }
+
+  .mobile-menu__overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 105;
+    background: rgba(28, 27, 26, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+  .mobile-menu__overlay.is-open { opacity: 1; visibility: visible; }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 106;
+    width: min(86vw, 20rem);
+    overflow-y: auto;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(-102%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mobile-menu.is-open { transform: none; }
+
+  .mobile-menu__head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.1rem 1rem;
+    background: linear-gradient(135deg, var(--color-tertiary-fixed), var(--color-surface));
+    border-bottom: 1px solid rgba(216, 193, 197, 0.4);
+  }
+
+  .mobile-menu__list { display: grid; gap: 0.15rem; padding: 0.75rem; }
+  .mobile-menu__link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.8rem 0.9rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-on-surface);
+    transition: background 0.2s, color 0.2s;
+  }
+  .mobile-menu__link .icon { color: var(--color-primary); }
+  .mobile-menu__link:hover { background: var(--color-surface-low); }
+  .mobile-menu__link.is-active { background: rgba(139, 64, 87, 0.1); color: var(--color-primary); }
+
+  /* Tautan masuk bergantian saat panel dibuka */
+  .mobile-menu.is-open .mobile-menu__link {
+    animation: menu-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms + 120ms);
+  }
+  @keyframes menu-in {
+    from { opacity: 0; transform: translateX(-14px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .mobile-menu__foot { margin-top: auto; padding: 1rem 1.1rem 1.4rem; display: grid; gap: 0.5rem; }
+  .mobile-menu__note { font-size: 0.75rem; text-align: center; color: var(--color-on-surface-variant); }
+}
